@@ -1,11 +1,3 @@
-
-/**
- * Write a description of class sales here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
 import java.util.*;
 import java.io.*;
 
