@@ -20,6 +20,19 @@ public class Server {
     private Socket client;
     private ArrayList<Rental> rentalsList = new ArrayList<>();
 
+    
+    public void connectToClient(){
+        try{
+            System.out.println("Waiting for client to connect");
+            client = new ServerSocket(19999).accept();
+
+            outStream = new ObjectOutputStream(client.getOutputStream());
+            inputStream = new ObjectInputStream(client.getInputStream());
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+    
     public void setDbConnection(){
         String dbUrl = "jdbc:ucanaccess://Database.accdb";
         try {
@@ -127,18 +140,6 @@ public class Server {
         }
         catch (SQLException | IOException | ClassNotFoundException e){
             e.printStackTrace();
-        }
-    }
-
-    public void connectToClient(){
-        try{
-            System.out.println("Waiting for client to connect");
-            client = new ServerSocket(19999).accept();
-
-            outStream = new ObjectOutputStream(client.getOutputStream());
-            inputStream = new ObjectInputStream(client.getInputStream());
-        }catch (IOException ex){
-            ex.printStackTrace();
         }
     }
 
